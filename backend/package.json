@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/CUNYTech/homecookd#readme",
   "devDependencies": {
-    "jshint": "^2.6.0"
+    "jshint": "^2.9.5"
   },
   "dependencies": {
     "aws-sdk": "^2.223.1",
