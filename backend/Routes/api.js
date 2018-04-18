@@ -14,7 +14,9 @@ const updateAccount = require('../Controller/updateAccount');
 
 const s3upload = require('../Controller/s3Upload');
 const sellers = require('../Controller/sellers');
-const orders = require('../Controller/Order/createOrder');
+const createOrder = require('../Controller/Order/createOrder');
+const updateOrder = require('../Controller/Order/updatesOrder');
+const getOrder = require('../Controller/Order/getOrder');
 
 // API
 // Base API Route
@@ -53,8 +55,18 @@ router.post('/update/account/seller/password', updateAccount.updateSellerAccount
 router.post('/update/account/seller', updateAccount.updateSellerAccount);
 
 //Order routes
-router.post('/order/userID/:UserID', orders.orderFoodById);
-router.post('/order/api_token', orders.orderFoodByApi);
+router.post('/order/api_token', createOrder.orderFoodByApi);
+router.post('/order/update', updateOrder.checkAuth, updateOrder.updateOrderStatus);
+router.post('/order/update/prepping', updateOrder.checkAuth, updateOrder.updateOrderStatusOrderPrepping);
+router.post('/order/update/received', updateOrder.checkAuth, updateOrder.updateOrderStatusOrderReceived);
+router.post('/order/update/delivery', updateOrder.checkAuth, updateOrder.updateOrderStatusOutForDelivery);
+router.post('/order/update/delivered', updateOrder.checkAuth, updateOrder.updateOrderStatusDelivered);
+//get Orders
+router.get('/order/orderID/:OrderID', getOrder.getOrderByOrderID);
+router.get('/order/sellerID/:SellerID', getOrder.getOrderBySellerID);
+router.get('/order/userID/:UserID', getOrder.getOrderByUserID);
+router.post('/order/seller/api_token', getOrder.getOrderBySellerApiToken);
+router.post('/order/user/api_token', getOrder.getOrderByUserApiToken);
 
 router.post('/update/account/seller', updateAccount.updateSellerAccount);
 
