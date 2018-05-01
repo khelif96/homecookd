@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import {Segment, Menu, Dropdown, Icon} from 'semantic-ui-react';
+import { Segment, Menu } from 'semantic-ui-react';
 import MenuItem from './MenuItem';
 import NewMenuItemModal from './NewMenuItemModal';
-import {getFoodItemsBySellerID,getFoodItemsByAPItoken} from '../../../../Utils/storeData';
+import { getFoodItemsByAPItoken } from '../../../../Utils/storeData';
 
 class MenuItemBox extends Component{
   constructor(props) {

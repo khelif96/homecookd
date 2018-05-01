@@ -56,12 +56,9 @@ class LoginSellerForm extends Component{
 
       // alert("Logging in ");
       this.setState({loggingIn:true,errorOccured:false})
-      const email = this.state.email;
-
-      const password = this.state.password;
 
       //call our axios promise, then retrieve the token from axios
-    this.loginSeller(this.state.email,this.state.password)
+    this.loginSeller(this.state.email, this.state.password)
         .then( response => {
           var api_token = response.data.data.api_token;
           if(api_token.length > 0) {

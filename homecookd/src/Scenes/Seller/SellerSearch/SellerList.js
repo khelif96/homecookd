@@ -1,13 +1,7 @@
 import React, { Component } from 'react';
 import SearchBar from '../../SearchInput/SearchBar';
 import { Card, Image,Button } from 'semantic-ui-react';
-import { withRouter } from 'react-router-dom'
-
-import {getSellers} from '../../../Utils/Sellers'
-
-const sellers = [
-
-]
+import {getSellers} from '../../../Utils/Sellers';
 
 const containerStyle = {
   marginTop: '10px'
@@ -38,14 +32,12 @@ class SellerList extends Component {
 
 
   componentDidMount() {
-
-    this.setState({sellers: sellers})
     getSellers()
     .then (response =>{
       this.setState({sellers: response.data.data.sellers})
     })
     .catch(error => {
-
+      console.log(error);
     })
   }
 

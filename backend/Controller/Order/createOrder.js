@@ -14,15 +14,15 @@ var FoodItem = require("../../Models/foodItemSchema");
             "ID"
         ]
     }
- * @param {*} req 
- * @param {*} res 
+ * @param {*} req
+ * @param {*} res
  */
 exports.orderFoodByApi = (req, res) => {
     if(req.body.user_api_token === undefined){
         res.status(400).json( {success: false, error: "user api token is missing"} );
     }
-    else if(req.body.seller_api_token === undefined){
-        res.status(400).json( {success: false, error: "seller api token is missing"} );
+    else if(req.body.seller_id === undefined){
+        res.status(400).json( {success: false, error: "seller id is missing"} );
     }
     else if(req.body.foodItems === undefined){
         res.status(400).json( {success: false, error: "No food sellected"} );
@@ -31,9 +31,14 @@ exports.orderFoodByApi = (req, res) => {
         // check if user exists
         User.findOne({api_token: req.body.user_api_token}, function(err, user){
             if(err || !user){
-                res.status(400).json( {success: false, error: "Could not find user"} );
+                Seller.findOne({api_token: req.body.user_api_token}, function(err, seller){
+                  if(err || !seller) {
+                    res.status(400).json( {success: false, error: "Could not find user"} );
+                  }
+                  res.status(400).json({success: false, error: 'You are logged in as a seller. Please log in as a user.'});
+                });
             }else{
-                Seller.findOne({api_token: req.body.seller_api_token}, function(err, seller){
+                Seller.findOne({_id: req.body.seller_id}, function(err, seller){
                     if(err || !seller){
                         res.status(400).json( {success: false, error: "Could not find seller"} );
                     }else{
@@ -55,10 +60,10 @@ exports.orderFoodByApi = (req, res) => {
                                     if(err){
                                         res.status(500).send(err);
                                     }else{
-                                        updateSellerAndUserOrders(user._id, seller._id, tempOrder, res);               
+                                        updateSellerAndUserOrders(user._id, seller._id, tempOrder, res);
                                     }
                                 });
-                                
+
                             }
                         });
                     }
@@ -79,11 +84,11 @@ function updateSellerAndUserOrders(user_id, seller_id, tempOrder, res){
                         if (err) {
                             res.status(400).json("contact addMsg error: " + err);
                         }else{
-                            res.json({success: true, message: "Sucessfully order places", data: tempOrder});   
+                            res.json({success: true, message: "Sucessfully placed order", data: tempOrder});
                         }
                     }
-                );  
+                );
             }
         }
-    ); 
+    );
 }

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Dropzone from 'react-dropzone'
-import {Modal,Button,Image,Header, Input,Label, TextArea,Icon} from 'semantic-ui-react'
-import IconButton from 'material-ui/IconButton';
+import {Modal,Button,Image,Header, Input, Icon} from 'semantic-ui-react'
 import {updateFoodItem} from '../../../../Utils/storeData';
 
 import {getSignedUrl,uploadFile} from '../../../../Utils/upload';

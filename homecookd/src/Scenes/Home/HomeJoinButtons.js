@@ -6,9 +6,9 @@ class HomeJoinButtons extends Component{
   render(){
     return(
       <div className="container">
-        <RaisedButton className="button" href="/Login" label="Login" primary={true}  />
-        <RaisedButton className="button" href="/Register" label="Get Started" primary={true}  />
-        <RaisedButton className="button" href="/RegisterSeller" label="Become a Seller" primary={true}  />
+        <RaisedButton className="button" href="/auth/Login" label="Login" primary={true}  />
+        <RaisedButton className="button" href="/auth/Register" label="Get Started" primary={true}  />
+        <RaisedButton className="button" href="/auth/RegisterSeller" label="Become a Seller" primary={true}  />
       </div>
     )
   }

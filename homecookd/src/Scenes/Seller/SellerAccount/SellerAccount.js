@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import SellerInfoCard from '../SellerAccount/Info'
-import ButtonExampleSocial from '../SellerAccount/SocialMedia'
-import SellerAccountMenu from '../SellerAccount/SellerAccountMenu'
+import SellerInfoCard from '../SellerAccount/Info';
+import OrderList from './Orders/OrderList';
 
 import MenuItemBox from './MenuItems/MenuItemBox';
 class SellerAccount extends Component{
@@ -18,24 +17,18 @@ class SellerAccount extends Component{
     return(
       <div>
 
-        {/* <OrderList /> */}
+        <header>
+          <center><h1>Welcome</h1></center>
+        </header>
 
-      <header>
-        <center><h1>Welcome</h1></center>
-      </header>
-
-
-      <div align= "center">
-      <SellerAccountMenu />
-      </div>
-
-      <center>
-         <SellerInfoCard style={{backgroundColor:'red'}}/>
-</center>
+        <center>
+           <SellerInfoCard style={{backgroundColor:'red'}}/>
+        </center>
+        <OrderList />
         <MenuItemBox style={{margin:50}}/>
 
-      <br/><br/><br/>
-    {/* <ButtonExampleSocial/>*/}
+        <br/><br/><br/>
+        {/* <ButtonExampleSocial/>*/}
       </div>
     )
   }

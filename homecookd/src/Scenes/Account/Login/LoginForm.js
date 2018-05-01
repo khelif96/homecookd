@@ -114,6 +114,10 @@ class LoginForm extends Component{
 
     return(
       <center>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
         <Paper style={style} zDepth={2} onKeyPress={this.handleKeyChange} onSubmit={this.handleFormSubmit}>
         <h2>LOGIN</h2>
         <MessageBar/>
@@ -129,10 +133,14 @@ class LoginForm extends Component{
           type="password"
         />
         <br />
+        <br/>
         <RaisedButton onClick={this.handleFormSubmit} href="/"label="Login" type="submit" primary={true}  />
         <br/>
+        <br/>
+        <Link to='/auth/Register'>Make an Account</Link>
+        <br/>
+        <Link to='/ForgotPassword'>Forgot username or password?</Link>
 
-        <Link to="/register">Make an Account</Link>
         </Paper>
       </center>
 

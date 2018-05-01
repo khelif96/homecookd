@@ -1,17 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { changeLogged, changeAccountType } from './actions/account-actions';
-
+import { changeLogged } from './actions/account-actions';
 import AppBar from 'material-ui/AppBar';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import MenuItem from 'material-ui/MenuItem';
 import FlatButton from 'material-ui/FlatButton';
 import RoutePaths from './App/RoutePaths'
 import LoggedInMenu from './Scenes/Home/LoggedInMenu';
-
 import Drawer from 'material-ui/Drawer'
-import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
-
 import './App.css';
 
 
@@ -47,6 +43,9 @@ class App extends Component {
     this.logInUser(localStorage.getItem('api_token')!== null)
   }
 
+  handleClick() {
+  alert('onClick triggered on the title component');
+}
 
   handleChange = (event, logged) => {
     this.setState({logged: logged});
@@ -56,35 +55,35 @@ class App extends Component {
     render(){
 
     return (
-      <MuiThemeProvider >
+      <MuiThemeProvider>
 
       <AppBar
-          style={{backgroundColor:'#db2828'}}
-          title="HomeCookd"
-          iconElementRight={this.props.logged ? <LoggedInMenu /> : <Login />}
-          onLeftIconButtonClick={this.handleToggle}/>
+        style={{backgroundColor:'#db2828'}}
+        title="HomeCookd"
+        iconElementRight={this.props.logged ? <LoggedInMenu /> : <Login />}
+        onLeftIconButtonClick={this.handleToggle}
+      />
 
-          <Drawer
-            docked={false}
-            width={200}
-            open={this.state.open}
-            onRequestChange={(open) => this.setState({open})}
-          >
-            <MenuItem onClick={this.handleClose} href="/#">Home</MenuItem>
-            <MenuItem onClick={this.handleClose}>Order</MenuItem>
-            <MenuItem onClick={this.handleClose} href="/Menu">Menu</MenuItem>
-            <MenuItem onClick={this.handleClose}>Location</MenuItem>
-            <MenuItem onClick={this.handleClose}>Refresh</MenuItem>
-            <MenuItem onClick={this.handleClose} href="/AboutUs">About Us</MenuItem>
-            <MenuItem onClick={this.handleClose}>Help</MenuItem>
+      <Drawer
+        docked={false}
+        width={200}
+        open={this.state.open}
+        onRequestChange={(open) => this.setState({open})}
+      >
 
-            {!this.props.logged && <MenuItem  onClick={this.handleClose} href="/auth/loginSeller">Login As a Seller</MenuItem>}
-            {!this.props.logged && <MenuItem onClick={this.handleClose} href="/auth/registerSeller">Register As a Seller</MenuItem>}
+        <MenuItem onClick={this.handleClose} href="/">Home</MenuItem>
+        <MenuItem onClick={this.handleClose} href="/Sellers" >Order</MenuItem>
+        <MenuItem onClick={this.handleClose} href="/Menu">Menu</MenuItem>
+        <MenuItem onClick={this.handleClose}>Location</MenuItem>
+        <MenuItem onClick={this.handleClose} href="/AboutUs">About Us</MenuItem>
+
+        {!this.props.logged && <MenuItem  onClick={this.handleClose} href="/auth/loginSeller">Login As a Seller</MenuItem>}
+        {!this.props.logged && <MenuItem onClick={this.handleClose} href="/auth/registerSeller">Register As a Seller</MenuItem>}
 
 
-          </Drawer>
-        <RoutePaths/>
-        </MuiThemeProvider>
+      </Drawer>
+      <RoutePaths/>
+      </MuiThemeProvider>
 
     );
   }

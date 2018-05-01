@@ -1,6 +1,4 @@
 import React,{Component} from 'react';
-import TextField from 'material-ui/TextField';
-import MenuTable from '../SellerAccount/ProfileMenu.js'
 import ProfileEdit from '../SellerAccount/InfoEdit.js'
 
 

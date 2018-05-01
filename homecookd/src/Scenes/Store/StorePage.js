@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import FoodItemGrid from './FoodItemGrid/FoodItemGrid';
-import ButtonExampleLabeledIcon from './CheckOut';
-import StoreInfo from './StoreInfo'
+import CheckOut  from './CheckOut/CheckOut';
 import SearchExampleStandard from './StoreSearchBar';
 
 import StoreDescriptionCard from './StoreDescriptionCard';
@@ -17,13 +16,15 @@ class StorePage extends Component{
           first : "",
           last : ""
         }
-      }
+      },
+      seller_id: ''
     };
   }
   componentDidMount(){
     getStoreInfoByID(this.props.match.params.sellerID)
     .then(response => {
       this.setState({storeData: response.data.data})
+      this.setState({seller_id: response.data.data._id})
     })
     .catch(error => {
       alert(JSON.stringify(error));
@@ -34,11 +35,14 @@ class StorePage extends Component{
     return(
       <div>
       <header>
-        <center><h1>Place An Order With </h1></center>
+      <br/>
+        <center><h1>Place An Order</h1></center>
       </header>
       <center><SearchExampleStandard/></center>
-     <ButtonExampleLabeledIcon/>
+      <CheckOut seller_id={this.state.seller_id}/>
+      <div>
       <FoodItemGrid sellerID={this.props.match.params.sellerID}/>
+      </div>
       <StoreDescriptionCard name={this.state.storeData.name} />
 
 

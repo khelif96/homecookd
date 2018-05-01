@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import {Label,Input,Button} from 'semantic-ui-react';
-import {getSignedUrl,uploadFile} from "../../Utils/upload";
+import { Label } from 'semantic-ui-react';
+import { getSignedUrl, uploadFile } from "../../Utils/upload";
 class UploadImage extends Component{
   constructor(props) {
     super(props);

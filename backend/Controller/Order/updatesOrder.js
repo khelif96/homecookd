@@ -18,7 +18,7 @@ exports.checkAuth = (req, res, next) => {
  * The below is an example of how to use this function.
  * {
 	"api_token": "seller api token",
-	"orderID": ".....", 
+	"orderID": ".....",
 	"orderStatus": {
 		"orderReceived": boolean,
 		"orderPrepping": boolean,
@@ -26,25 +26,25 @@ exports.checkAuth = (req, res, next) => {
 		"delivered": boolean
 	}
 }
- * @param {*} req 
- * @param {*} res 
+ * @param {*} req
+ * @param {*} res
  */
 exports.updateOrderStatus = (req, res) => {
     Seller.findOne( {api_token: req.body.api_token},
         function(err, seller){
             if(err || !seller){
-                res.status(400).json( {success: false, error: "Could not find seller"} );                
+                res.status(400).json( {success: false, error: "Could not find seller"} );
             }else{
                 Order.findById( req.body.orderID, function(err, order){
                     if(err || !order){
-                        res.status(400).json( {success: false, error: "Could not find order"} ); 
+                        res.status(400).json( {success: false, error: "Could not find order"} );
                     }else{
                         order.orderStatus= req.body.orderStatus;
                         order.save(function(err){
                             if(err){
                                 res.status(500).send(err);
                             }else{
-                                res.status(400).json( {success: true, data: {message: "Successfully, order is updated", order_info: order}} ); 
+                                res.status(200).json( {success: true, data: {message: "Successfully, order is updated", order_info: order}} );
                             }
                         });
                     }
@@ -59,31 +59,31 @@ exports.updateOrderStatus = (req, res) => {
  * The below is an example of how to use this function.
  * {
 	"api_token": "seller api token",
-	"orderID": ".....", 
+	"orderID": ".....",
 	"orderStatus": {
 		"orderReceived": boolean
 	}
 }
- * @param {*} req 
- * @param {*} res 
+ * @param {*} req
+ * @param {*} res
  */
 exports.updateOrderStatusOrderReceived = (req, res) => {
     Seller.findOne( {api_token: req.body.api_token},
         function(err, seller){
             if(err || !seller){
-                res.status(400).json( {success: false, error: "Could not find seller"} );                                
+                res.status(400).json( {success: false, error: "Could not find seller"} );
             }else{
                 console.log(seller.orders);
                 Order.findById( req.body.orderID, function(err, order){
                     if(err || !order){
-                        res.status(400).json( {success: false, error: "Could not find order"} ); 
+                        res.status(400).json( {success: false, error: "Could not find order"} );
                     }else{
                         order.orderStatus.orderReceived= req.body.orderStatus.orderReceived;
                         order.save(function(err){
                             if(err){
                                 res.status(500).send(err);
                             }else{
-                                res.status(400).json( {success: true, data: {message: "Successfully, order is updated", order_info: order}} ); 
+                                res.status(200).json( {success: true, data: {message: "Successfully, order is updated", order_info: order}} );
                             }
                         });
                     }
@@ -97,30 +97,30 @@ exports.updateOrderStatusOrderReceived = (req, res) => {
  * The below is an example of how to use this function.
  * {
 	"api_token": "seller api token",
-	"orderID": ".....", 
+	"orderID": ".....",
 	"orderStatus": {
 		"orderPrepping": boolean
 	}
 }
- * @param {*} req 
- * @param {*} res 
+ * @param {*} req
+ * @param {*} res
  */
 exports.updateOrderStatusOrderPrepping = (req, res) => {
     Seller.findOne( {api_token: req.body.api_token},
         function(err, seller){
             if(err || !seller){
-                res.status(400).json( {success: false, error: "Could not find seller"} );                                
+                res.status(400).json( {success: false, error: "Could not find seller"} );
             }else{
                 Order.findById( req.body.orderID, function(err, order){
                     if(err || !order){
-                        res.status(400).json( {success: false, error: "Could not find order"} ); 
+                        res.status(400).json( {success: false, error: "Could not find order"} );
                     }else{
                         order.orderStatus.orderPrepping= req.body.orderStatus.orderPrepping;
                         order.save(function(err){
                             if(err){
                                 res.status(500).send(err);
                             }else{
-                                res.status(400).json( {success: true, data: {message: "Successfully, order is updated", order_info: order}} ); 
+                                res.status(200).json( {success: true, data: {message: "Successfully, order is updated", order_info: order}} );
                             }
                         });
                     }
@@ -134,30 +134,30 @@ exports.updateOrderStatusOrderPrepping = (req, res) => {
  * The below is an example of how to use this function.
  * {
 	"api_token": "seller api token",
-	"orderID": ".....", 
+	"orderID": ".....",
 	"orderStatus": {
 		"outForDelivery": boolean
 	}
 }
- * @param {*} req 
- * @param {*} res 
+ * @param {*} req
+ * @param {*} res
  */
 exports.updateOrderStatusOutForDelivery = (req, res) => {
     Seller.findOne( {api_token: req.body.api_token},
         function(err, seller){
             if(err || !seller){
-                res.status(400).json( {success: false, error: "Could not find seller"} );                                
+                res.status(400).json( {success: false, error: "Could not find seller"} );
             }else{
                 Order.findById( req.body.orderID, function(err, order){
                     if(err || !order){
-                        res.status(400).json( {success: false, error: "Could not find order"} ); 
+                        res.status(400).json( {success: false, error: "Could not find order"} );
                     }else{
                         order.orderStatus.outForDelivery= req.body.orderStatus.outForDelivery;
                         order.save(function(err){
                             if(err){
                                 res.status(500).send(err);
                             }else{
-                                res.status(400).json( {success: true, data: {message: "Successfully, order is updated", order_info: order}} ); 
+                                res.status(200).json( {success: true, data: {message: "Successfully, order is updated", order_info: order}} );
                             }
                         });
                     }
@@ -171,30 +171,30 @@ exports.updateOrderStatusOutForDelivery = (req, res) => {
  * The below is an example of how to use this function.
  * {
 	"api_token": "seller api token",
-	"orderID": ".....", 
+	"orderID": ".....",
 	"orderStatus": {
 		"delivered": boolean
 	}
 }
- * @param {*} req 
- * @param {*} res 
+ * @param {*} req
+ * @param {*} res
  */
 exports.updateOrderStatusDelivered = (req, res) => {
     Seller.findOne( {api_token: req.body.api_token},
         function(err, seller){
             if(err || !seller){
-                res.status(400).json( {success: false, error: "Could not find seller"} );                                
+                res.status(400).json( {success: false, error: "Could not find seller"} );
             }else{
                 Order.findById( req.body.orderID, function(err, order){
                     if(err || !order){
-                        res.status(400).json( {success: false, error: "Could not find order"} ); 
+                        res.status(400).json( {success: false, error: "Could not find order"} );
                     }else{
                         order.orderStatus.delivered= req.body.orderStatus.delivered;
                         order.save(function(err){
                             if(err){
                                 res.status(500).send(err);
                             }else{
-                                res.status(400).json( {success: true, data: {message: "Successfully, order is updated", order_info: order}} ); 
+                                res.status(200).json( {success: true, data: {message: "Successfully, order is updated", order_info: order}} );
                             }
                         });
                     }

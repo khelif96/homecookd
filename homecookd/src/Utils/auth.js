@@ -1,11 +1,9 @@
 import axios from 'axios';
-
-var baseUrlDomain = 'http://localhost'
-const baseUrl = baseUrlDomain +":3001";
+import serverAddress from './serverAddress';
 
 export {registerCustomer};
   function registerCustomer(email,userName,password, firstName, lastName){
-    return axios.post(baseUrl + "/api/auth/register/user", {
+    return axios.post(serverAddress + "/api/auth/register/user", {
       email: email,
       userName: userName,
       password: password,
@@ -20,7 +18,7 @@ export {registerCustomer};
 
   export {registerSeller};
     function registerSeller(email,userName,password, firstName, lastName,businessName){
-      return axios.post(baseUrl + "/api/auth/register/seller", {
+      return axios.post(serverAddress + "/api/auth/register/seller", {
         email: email,
         userName: userName,
         password: password,
@@ -36,7 +34,7 @@ export {registerCustomer};
 
     export {loginSeller};
       function loginSeller(email,password){
-        return axios.post(baseUrl + "/api/auth/login/seller", {
+        return axios.post(serverAddress + "/api/auth/login/seller", {
           email: email,
           password: password
         })
@@ -46,7 +44,7 @@ export {registerCustomer};
 
   export {loginCustomer};
     function loginCustomer(email,password){
-      return axios.post(baseUrl + "/api/auth/login/user", {
+      return axios.post(serverAddress + "/api/auth/login/user", {
         email: email,
         password: password
       })

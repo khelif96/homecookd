@@ -61,7 +61,7 @@ const tilesData = [
 /**
  * A simple example of a scrollable `GridList` containing a [Subheader](/#/components/subheader).
  */
-const GridListExampleSimple = () => (
+const Menu = () => (
   <div style={styles.root}>
     <GridList
       cellHeight={180}
@@ -75,7 +75,7 @@ const GridListExampleSimple = () => (
           title={tile.title}
           actionIcon={<IconButton><StarBorder color="white" /></IconButton>}
         >
-          <img src={tile.img} />
+          <img src={tile.img} alt={tile.title}/>
         </GridTile>
       ))}
     </GridList>
@@ -83,4 +83,4 @@ const GridListExampleSimple = () => (
 );
 
 
-export default GridListExampleSimple;
+export default Menu;

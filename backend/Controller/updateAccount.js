@@ -5,8 +5,12 @@ var bcrypt = require("bcryptjs");
 var hat = require("hat");
 const saltRounds = 10;
 var rack = hat.rack(64, 16);
+var emailRegex = new RegExp("^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})$");
+var userNameRegex = new RegExp("^[a-zA-Z0-9\.\-\_]{3,15}$");
 var passwordRegex = new RegExp("^(?=.{4,})");
 
+
+// no userName and email address
 exports.updateSellerAccount = (req, res) => {
   if(req.body.api_token === undefined || req.body.api_token === "" ){ //add if password is not filled
     res.status(401).json( {success:false, error: "Missing api_token in request"} );
@@ -16,26 +20,11 @@ exports.updateSellerAccount = (req, res) => {
       if (!seller  || err){
         res.status(401).json( {success:false, error: "Could not find seller with this api token"} );
       }else{
-        //console.log(seller);
         var isReqEmpty = true;
         var isEmailGood;
         if(req.body.name !== undefined){
           isReqEmpty = false;
           seller.name = req.body.name;
-        }
-        if(req.body.userName !== undefined){
-          isReqEmpty = false;
-          seller.userName = req.body.userName;
-        }
-        if(req.body.email !== undefined){
-          if(seller.email !== req.body.oldEmail){
-            isEmailGood = false;
-            res.status(401).json({success:false, error: "old email does not match"});
-            return;
-          }else{
-            isReqEmpty = false;
-            seller.email = req.body.email;
-          }
         }
         if(req.body.business_name !== undefined){
           isReqEmpty = false;
@@ -46,7 +35,6 @@ exports.updateSellerAccount = (req, res) => {
           seller.location = req.body.location;
         }
         if(req.body.newPassword !== undefined){
-          console.log("in password field");
           if(req.body.oldPassword === req.body.newPassword){
             res.status(401).json( {success:false, error: "New password is the same as old one"} );
           }else if(!passwordRegex.test(req.body.newPassword)){
@@ -145,3 +133,74 @@ function updateSellerPassword(seller_id, newPassword, res)
     }
   );
 }
+// do not need api_token
+exports.updateEmail = (req, res) => {
+  // if(req.body.api_token === undefined || req.body.api_token === "" ){ //add if password is not filled
+  //   res.status(401).json( {success:false, error: "Missing api_token in request"} );
+  // }else 
+  if(req.body.newEmail === undefined || req.body.oldEmail === undefined){
+    res.status(401).json( {success:false, error: "Missing email in request"} );        
+  }else if(req.body.newEmail === req.body.oldEmail) {
+    res.status(401).json( {success:false, error: "Both emails are the same"} );            
+  }else if (!emailRegex.test(req.body.newEmail)) {
+    res.status(400);
+    res.json( {error: "invalid Email address"} );
+  }else{
+    Seller.find( {email: req.body.newEmail}, function(err, sellers){
+      if(err){
+        res.status(500).send(err);        
+      }else if(!sellers.length){
+        Seller.findOne( {email: req.body.oldEmail}, function(err, seller){
+          if(!seller || err){
+            res.status(401).json( {success:false, error: "Could not find seller"} );                                
+          }else{
+            seller.email = req.body.newEmail;
+            seller.save(function(err){
+              if(err){
+                res.status(500).send(err);  
+              }else{
+                res.json( {success: true, message: "Sucesfully changed email",data:{seller_info: seller, user_type: "Seller"}} );                
+              }
+            });
+          }
+        });
+      }else{
+        res.status(401).json( {success:false, error: "Email already exists"} );                    
+      }
+    });
+  }
+};
+
+exports.updateUserName = (req, res) => {
+  if(req.body.newUserName === undefined || req.body.oldUserName === undefined){
+    res.status(401).json( {success:false, error: "Missing user name in request"} );        
+  }else if(req.body.newUserName === req.body.oldUserName) {
+    res.status(401).json( {success:false, error: "Both user names are the same"} );            
+  }else if (!userNameRegex.test(req.body.newUserName)) {
+    res.status(400);
+    res.json( {error: "invalid user name"} );
+  }else{
+    Seller.find( {userName: req.body.newUserName}, function(err, sellers){
+      if(err){
+        res.status(500).send(err);        
+      }else if(!sellers.length){
+        Seller.findOne( {userName: req.body.oldUserName}, function(err, seller){
+          if(!seller || err){
+            res.status(401).json( {success:false, error: "Could not find seller"} );                                
+          }else{
+            seller.userName = req.body.newUserName;
+            seller.save(function(err){
+              if(err){
+                res.status(500).send(err);  
+              }else{
+                res.json( {success: true, message: "Sucesfully changed user name",data:{seller_info: seller, user_type: "Seller"}} );                
+              }
+            });
+          }
+        });
+      }else{
+        res.status(401).json( {success:false, error: "User name already exists"} );                    
+      }
+    });
+  }
+};

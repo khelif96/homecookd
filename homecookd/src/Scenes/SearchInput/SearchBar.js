@@ -18,9 +18,7 @@ export default class SearchBar extends Component {
   }
 
   handleSearchChange(event){
-    const name = event.target.name;
     const value = event.target.value;
-
     this.setState({searchTerm: value})
   }
 

@@ -7,3 +7,4 @@ var foodTypeSchema = new Schema ({
 });
 
 module.exports = mongoose.model('Food Type', foodTypeSchema);
+

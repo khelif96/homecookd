@@ -37,7 +37,7 @@ exports.foodItemCreate = (req, res) => {
     });
 };
 
-function sellerUpdateFoodItemId(seller_id, tempFoodItem_id , res)
+function sellerUpdateFoodItemId(seller_id, tempFoodItem_id , res, req)
 {
     Seller.update({ _id: seller_id }, { $push: { food_items_id: tempFoodItem_id } },
         function (err, numAffected, rawResponse) {

@@ -16,6 +16,11 @@ class StoreDescripitionCard extends Component{
   componentDidMount(){
   }
   render(){
+    const align = {
+      marginLeft: 20,
+      display: 'flex',
+
+    }
 
     const extra = (
       <a>
@@ -30,13 +35,16 @@ class StoreDescripitionCard extends Component{
       </a>
     )
     return(
+      <div style={align}>
       <Card
+        raised="true"
         image='https://react.semantic-ui.com/assets/images/avatar/large/elliot.jpg'
         edit={edit}
         header={this.props.name.first + "'s Store"}
         description='About the chef:'
         extra={extra}>
       </Card>
+      </div>
     )
   }
 }

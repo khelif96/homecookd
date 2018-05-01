@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import {Modal,Button,Image,Header, Input,Label, TextArea,Icon,Dropdown} from 'semantic-ui-react'
-import IconButton from 'material-ui/IconButton';
+import {Modal,Button,Image,Header, Input,Label, Icon, Dropdown} from 'semantic-ui-react'
 import {newFoodItem} from '../../../../Utils/storeData';
 
 class NewMenuItemModal extends Component{

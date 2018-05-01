@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import {Card,Button} from 'semantic-ui-react'
-import {getFoodItemsBySellerID} from '../../../Utils/storeData.js';
-import FoodGridMagnify from './FoodGridMagnify'
+import { Card } from 'semantic-ui-react';
+import { getFoodItemsBySellerID } from '../../../Utils/storeData.js';
 import FoodItemCard from './FoodItemCard';
+// import FoodGridMagnify from './FoodGridMagnify';
 
 const FoodItemGridStyle = {
   width: '500px',
-  margin: '0 auto',
+  marginLeft: 425,
   height: 0
 
 
@@ -38,7 +38,7 @@ class FoodItemGrid extends Component{
         this.setState({foodItems: responseBody.data});
         var FoodItemGrid = [];
         for(var i = 0; i<this.state.foodItems.length; i++){
-          FoodItemGrid.push(<FoodItemCard onClick={this.toggleModal} foodItemName={this.state.foodItems[i].name}/>)
+          FoodItemGrid.push(<FoodItemCard onClick={this.toggleModal} id={this.state.foodItems[i]._id} foodItemName={this.state.foodItems[i].name}/>)
         }
         this.setState({FoodItemGrid: FoodItemGrid});
 
@@ -53,14 +53,10 @@ class FoodItemGrid extends Component{
 
 
   render(){
-    var FoodItemGrid = []
-
-    const src = 'https://dishes.menu/assets/img/tmp/food_default.jpg';
-    const style={margin:5}
     return(
       <div>
 
-      <FoodGridMagnify open={this.state.open} handleClose={this.handleClose}/>
+      {/* <FoodGridMagnify open={this.state.open} handleClose={this.handleClose}/> */}
         <Card.Group style={FoodItemGridStyle} itemsPerRow={3}>
           {
             this.state.FoodItemGrid

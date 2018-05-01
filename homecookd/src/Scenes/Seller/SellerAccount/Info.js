@@ -1,6 +1,5 @@
-import React, { Component } from 'react'
-import { Card, Icon, Accordion} from 'semantic-ui-react'
-import AccordionExampleStandard from './Accordion'
+import React from 'react'
+import { Card, Icon } from 'semantic-ui-react'
 
 const extra = (
   <a handleClick={()=>{this.AccordionExampleStandard()}}>

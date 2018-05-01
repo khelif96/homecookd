@@ -96,6 +96,8 @@ class RegisterForm extends Component{
         }
         return(
           <center>
+          <br/>
+          
           <Paper  style={style} onKeyPress={this.handleKeyChange} onSubmit={this.handleFormSubmit}>
             <h2 className="formTitle">Register</h2>
             <MessageBar/>
@@ -114,9 +116,10 @@ class RegisterForm extends Component{
 
             <TextField floatingLabelText="Password" name="password" type="password" value={this.state.password} onChange={this.handleFormChange} />
             <br/>
+            <br/>
 
             <RaisedButton type="submit" onClick={this.handleFormSubmit} label="Register" primary={true}  />
-            <Link className="redirectLogin" to="/login">Have an account? Log in</Link>
+            <Link className="redirectLogin" to='/auth/Login'>Have an account? Log in</Link>
           </Paper>
           </center>
         )

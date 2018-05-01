@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Menu,Icon, Segment, Image} from 'semantic-ui-react';
+import { Segment, Image} from 'semantic-ui-react';
 
 import FavoriteStar from './FavoriteStar';
 import MenuItemModal from './MenuItemModal';

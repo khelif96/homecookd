@@ -1,9 +1,17 @@
 import axios from 'axios';
-
-var baseUrlDomain = 'http://localhost'
-const baseUrl = baseUrlDomain +":3001";
+import serverAddress from './serverAddress';
 
 export {getSellers};
   function getSellers(){
-    return axios.get(baseUrl + "/api/seller/sellers")
+    return axios.get(serverAddress + "/api/seller/sellers")
     }
+
+export{UpdateSellerInfo}
+    function UpdateSellerInfo(api_token, requestBody){
+      return axios.post(serverAddress + '/api/update/account/seller', {api_token : api_token, requestBody})
+    }
+
+export{getSellerInfo}
+  function getSellerInfo(api_token){
+    return axios.post(serverAddress + '/api/auth/information/seller',{api_token: api_token})
+  }

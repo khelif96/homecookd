@@ -1,8 +1,5 @@
 import React, { Component } from 'react'
 import { Button, Modal, Header, Image } from 'semantic-ui-react'
-import FoodItemGrid from './FoodItemGrid'
-import FoodItemCard from './FoodItemCard'
-
 
 class FoodGridMagnify extends Component {
   constructor(props) {
@@ -20,7 +17,7 @@ class FoodGridMagnify extends Component {
   addToCart(item) {
     var found = false;
     var updatedCart = this.state.cart.map((cartItem) => {
-      if (cartItem.name == item.name) {
+      if (cartItem.name === item.name) {
         found = true;
         cartItem.quantity++;
         return cartItem;
@@ -53,7 +50,7 @@ class FoodGridMagnify extends Component {
             <Button onClick={this.props.handleClose} negative>
               Cancel
             </Button>
-            <Button positive  content='Add to Cart' onClick={this.refs.addToCart} />
+            <Button positive  content='Add to Cart' />
           </Modal.Actions>
         </Modal>
 

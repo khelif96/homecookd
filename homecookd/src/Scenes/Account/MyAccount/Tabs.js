@@ -1,7 +1,6 @@
 import React from 'react';
 import { Menu, Tab } from 'semantic-ui-react';
 import Billing from '../MyAccount/BillingForm';
-import AccountPage from '../MyAccount/AccountPage';
 
 const panes = [
   {
@@ -18,8 +17,8 @@ const panes = [
   },
 ]
 
-const TabSample = () => (
+const Tabs = () => (
   <Tab panes={panes} />
 )
 
-export default TabSample;
+export default Tabs;
