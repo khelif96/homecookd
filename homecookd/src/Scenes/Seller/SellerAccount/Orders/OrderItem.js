@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Divider, Button } from 'semantic-ui-react';
+import { Divider, Button,Segment} from 'semantic-ui-react';
 import { getOrderInfo, updateOrderStatus } from '../../../../Utils/storeData';
 import StatusComplete from './OrderStatus/StatusComplete';
 import StatusNotComplete from './OrderStatus/StatusNotComplete';
@@ -78,7 +78,7 @@ class OrderItem extends Component {
 
   render() {
     return (
-      <div>
+      <Segment>
         {this.state.foodItems.map((foodItem, i) =>
           <OrderItemName key={i} id={foodItem}/>
         )}
@@ -126,7 +126,7 @@ class OrderItem extends Component {
           </div>
         </div>
         <Divider segment/>
-      </div>
+      </Segment>
     )
   }
 }

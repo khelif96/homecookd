@@ -24,6 +24,8 @@ class SellerAccount extends Component{
         <center>
            <SellerInfoCard style={{backgroundColor:'red'}}/>
         </center>
+
+        <h1 style={{margin:50}}>Orders</h1>
         <OrderList />
         <MenuItemBox style={{margin:50}}/>
 

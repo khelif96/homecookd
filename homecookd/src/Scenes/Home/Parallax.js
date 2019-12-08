@@ -34,7 +34,7 @@ class HomeBg extends Component {
   <div style={styles}>
     <Parallax bgImage={image1}
       strength={300}>
-      <div style={{height: 500}}>
+      <div style={{height: 1000}}>
         <div style={insideStyles}>HomeCookd</div>
         <div style={captionStyles}>Because Home is where the heart is.</div>
       </div>
@@ -43,7 +43,7 @@ class HomeBg extends Component {
       </div>
     </Parallax>
     <Parallax bgImage={image3} blur={{min: -1,max:3}} >
-      <div style={{height: 500}}>
+      <div style={{height: 1000}}>
       <div style={secondPicDescriptionStyles}>How It Works</div>
       <div style={secondCaptionStyles}>
       HomeCookd provide users the opportunity to showcase{"\n"} their culinary talent whether

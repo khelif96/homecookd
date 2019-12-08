@@ -38,7 +38,7 @@ class FoodItemGrid extends Component{
         this.setState({foodItems: responseBody.data});
         var FoodItemGrid = [];
         for(var i = 0; i<this.state.foodItems.length; i++){
-          FoodItemGrid.push(<FoodItemCard onClick={this.toggleModal} id={this.state.foodItems[i]._id} foodItemName={this.state.foodItems[i].name}/>)
+          FoodItemGrid.push(<FoodItemCard onClick={this.toggleModal} id={this.state.foodItems[i]._id} fooditemImage = {this.state.foodItems[i].image} foodItemName={this.state.foodItems[i].name}/>)
         }
         this.setState({FoodItemGrid: FoodItemGrid});
 

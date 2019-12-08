@@ -39,6 +39,7 @@ class OrderList extends Component {
   render() {
     return (
       <div className="orderListStyle">
+
         <Segment style={orderListSegmentStyle}>
           {
             this.state.orders.map((order, i) =>

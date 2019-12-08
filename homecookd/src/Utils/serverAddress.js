@@ -1,3 +1,3 @@
-const serverAddress = 'http://54.210.114.23:3000';
+const serverAddress = 'http://localhost:3001';
 
 export default serverAddress;
